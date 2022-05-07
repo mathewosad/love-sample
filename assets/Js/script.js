@@ -63,4 +63,20 @@ float sdBezier(vec2 pos, vec2 A,vec2 B,vec2 C) {
     return res;
 }
 
-    
+vec2 getHeartPosistion( float t ) {
+    return vec2(16.0 * sin(t) * sin(t) * sin(t), - (13.0 * cos(t) - 5.0 * cos(2.0 * t) - 2.0 * cos(3.0 * t) - cos(4.0 * t)));
+}
+float getGlow(float dist, float radius, float intensity) {
+    return pow(radius/dist, intensity);
+}
+float getSegment(float t ,vec2 pos, float offset, float scale) {
+    for (int i = 0; i < POINT_COUNT; i++) {
+        points[i] = getHeartPosistion(offset + float(i) + len +
+fract(speed + t) * 6.8);
+        vec2 c = (points[0] + points[1]) / 2.0;
+        vec2 c_prev;
+        float dist = 10000.0;
+        for (int i = 0; i < POINT_COUNT - 1; i++) {
+            c_prev = c;
+            c = (points[i] + points[i + 1]) / 2.0;
+            dist = min(dist, sdBezier(pos, scale * c_prev, scale * c, scale * points[i], scale * c));
