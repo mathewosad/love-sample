@@ -80,3 +80,20 @@ fract(speed + t) * 6.8);
             c_prev = c;
             c = (points[i] + points[i + 1]) / 2.0;
             dist = min(dist, sdBezier(pos, scale * c_prev, scale * c, scale * points[i], scale * c));
+        }
+        return max (0.0, dist);
+    }
+    void main() {
+        vec2 uv = gl_FragCoord.xy / resolution.xy;
+        float widthHeight = resolution.x / resolution.y;
+        vec2 centre = vec2(0.5, 0.5);
+        vec2 pos = centre - uv;
+        pos.y /= widthHeight;
+        // shift upwards to make the heart look more natural
+        pos.y += 0.2;
+        float scale = 0.000015 * height;
+        float t = time;
+        // get first segment distance
+        float dist = getSegment(t, pos, 0.0, scale);
+        float glow = getGlow(dist, radius, intensity);
+        vec3 col = vec3(0.0);
