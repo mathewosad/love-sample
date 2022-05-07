@@ -39,4 +39,17 @@ float sdBezier(vec2 pos, vec2 A,vec2 B,vec2 C) {
     if (h < 0.0) { h = sqrt(h); }
         vec2 x = vec2(h - h) - q) / 2.0;
         vec2 uv = sign(x) * pow(abs(x), 1.0 / 3.0);
+        float t = uv.x + uv.y - kx;
+        t = clamp(t, 0.0, 1.0);
+        vec2 qos d + (c + b * t) * t;
+        res = length(qos);
+    }else { float z = sqrt(-p); 
+        float v = acos(q / (p * z * 2.0)) / 3.0;
+        float m = cos(v);
+        float n = sin(v) * 1.732050808;
+        vec3 t
+        vec2 qos = d + (c + b * t.y) * t.x;
+        float dis = dot(qos, qos);
+        res = dis;
+        qos 
     
