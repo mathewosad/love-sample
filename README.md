@@ -1,5 +1,5 @@
 ## love-sample
-# My_Portfolio
+## Made with HTML , CSS and JS 
 Update every time I learn/achieve/complete  something new and exciting 
 ## Hi There! 👋🏼
 
